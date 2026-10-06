@@ -1,0 +1,24 @@
+# Python virtual environments and bytecode
+.venv/
+__pycache__/
+*.py[cod]
+
+# Local settings and secrets
+.env
+.env.*
+!.env.example
+
+# Local database and uploaded files
+/db.sqlite3
+/media/
+
+# Generated frontend dependencies and build output
+/frontend/node_modules/
+/frontend/dist/
+
+# Local tooling and logs
+.vscode/
+*.log
+
+# Accidental root-level npm lockfile; frontend/package-lock.json is tracked
+/package-lock.json
