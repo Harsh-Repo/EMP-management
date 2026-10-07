@@ -1,0 +1,30 @@
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    environment:
+      DJANGO_DEBUG: "true"
+      DJANGO_ALLOWED_HOSTS: "django,localhost,127.0.0.1,[::1]"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./config:/app/config
+      - ./employees:/app/employees
+      - ./manage.py:/app/manage.py
+      - ./db.sqlite3:/app/db.sqlite3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      VITE_API_TARGET: "http://django:8000"
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - django
