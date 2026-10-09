@@ -7,6 +7,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
+*.pem
 
 # Local database and uploaded files
 /db.sqlite3
